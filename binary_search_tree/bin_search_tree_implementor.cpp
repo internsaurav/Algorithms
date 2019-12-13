@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h> 
 #include "bin_search_tree.h"
+#include <vector>
+#include "utils.h"
 using namespace std;
 
 void generateRandomArray(int* empty, int length){
@@ -11,67 +13,36 @@ void generateRandomArray(int* empty, int length){
 	}
 }
 
-void basicTestCases(){
-	cout << "BASIC TEST CASES\n================\n";
-	int caseNum = 0;
-	int length = -1;
+void testCase(vector<int> nodeElements){
 	node* nodes = NULL;
 	node* tree = NULL;
 
-	length = 1;
+	int length = nodeElements.size();
+	cout << "Num Elements: " << length <<"\n";
 	nodes = new node[length];
-	nodes[0] = {5, NULL, NULL, NULL};
-
-	for(int i=0; i <length; i++){
-		tree_insert(&tree, &nodes[i]);
+	cout << "Elements being inserted: ";
+	for (int j=0; j < length; j++){
+		cout << nodeElements.at(j) << ",";
+		nodes[j] = {nodeElements.at(j), NULL, NULL, NULL};
+		tree_insert(&tree, &nodes[j]);
 	}
-	cout << "TestCase " << ++caseNum << "\n----------------\n";
+	cout << "\n";
+	cout << "In-order Traversal: ";
 	in_order_tree_walk(&tree);
 	tree = NULL;
 	delete[] nodes;
 	cout << "\n";
-
-
-	length = 2;
-	nodes = new node[length];
-	nodes[0] = {5, NULL, NULL, NULL};
-	nodes[1] = {1, NULL, NULL, NULL};
-
-	for(int i=0; i <length; i++){
-		tree_insert(&tree, &nodes[i]);
-	}
-	cout << "TestCase " << ++caseNum << "\n----------------\n";
-	in_order_tree_walk(&tree);
-	tree = NULL;
-	delete[] nodes;
-	cout << "\n";
-
-
-	length = 7;
-	nodes = new node[length];
-	nodes[0] = {5, NULL, NULL, NULL};
-	nodes[1] = {2, NULL, NULL, NULL};
-	nodes[2] = {8, NULL, NULL, NULL};
-	nodes[3] = {1, NULL, NULL, NULL};
-	nodes[4] = {3, NULL, NULL, NULL};
-	nodes[5] = {6, NULL, NULL, NULL};
-	nodes[6] = {9, NULL, NULL, NULL};
-	
-	for(int i=0; i <length; i++){
-		tree_insert(&tree, &nodes[i]);
-	}
-	cout << "TestCase " << ++caseNum << "\n----------------\n";
-	in_order_tree_walk(&tree);
-	tree = NULL;
-	delete[] nodes;
-	cout << "\n";
-
 
 }
 
-int main(){
-	basicTestCases();
-	// level1TestCases();
+int main(int argc, char** argv){
+	vector<vector<int>> arrays = readArrays(argv[1]);
+	cout << "Num Testcases: " << arrays.size()<<"\n";
+	int caseNum = 0;
+	for (vector<vector<int>>::const_iterator i = arrays.begin(); i != arrays.end(); ++i){
+		cout << "Case number: " <<  ++caseNum << "\n";
+		testCase(*i);
+	}
 	return 0;
 }
 
