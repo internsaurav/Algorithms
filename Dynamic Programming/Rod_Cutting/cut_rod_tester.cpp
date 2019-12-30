@@ -1,15 +1,28 @@
 #include "cut_rod.h"
 #include <iostream>
 
-void printResult(rod_cut_solution* sol, int expected_revenue){
-	if(sol != NULL && sol->max_revenue == expected_revenue){
+
+int calculate_revenue(rod_cut_solution* sol, int* p){
+	int calculated_revenue = 0;
+	for (std::vector<int>::iterator it = (sol->cuts).begin() ; it != (sol->cuts).end(); ++it){
+    calculated_revenue += p[*it-1];
+	}
+	return calculated_revenue;
+}
+
+void printResult(rod_cut_solution* sol, int expected_revenue, int* p){
+	int calculated_revenue = 0;
+	if(sol != NULL)
+		calculated_revenue = calculate_revenue(sol, p);
+
+	if(sol != NULL && sol->max_revenue == expected_revenue && calculated_revenue == expected_revenue){
 		std::cout << "Passed\n";
 	} else {
 		std::cout << "Failed: Expected = " << expected_revenue << " & Actual = ";
 		if(sol == NULL){
 			std::cout << "NULL\n";
 		} else {
-			std::cout << sol->max_revenue << "\n";
+			std::cout << sol->max_revenue << " ~ " << calculated_revenue <<"\n";
 		}
 	}
 }
@@ -17,7 +30,7 @@ void printResult(rod_cut_solution* sol, int expected_revenue){
 void max_revenue_test_case(int n, int* p, int expected_revenue, int caseNum){
 	std::cout << "Case " << caseNum << ": ";
 	rod_cut_solution* sol = cut_rod(p, n);
-	printResult(sol, expected_revenue);
+	printResult(sol, expected_revenue, p);
 }
 
 void max_revenue_test_cases(){

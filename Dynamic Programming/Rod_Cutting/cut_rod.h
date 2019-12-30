@@ -1,10 +1,11 @@
 #ifndef CUT_ROD_H
 #define CUT_ROD_H
 
+#include <vector>
+
 struct rod_cut_solution {
 	int max_revenue;
-	int num_cuts;
-	int* cuts;
+	std::vector<int> cuts;
 };
 
 //n = length of the rod
