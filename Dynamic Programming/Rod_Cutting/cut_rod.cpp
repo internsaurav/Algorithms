@@ -23,7 +23,7 @@ rod_cut_solution* cut_rod(int* prices, int n){
 		opt_revenue[rod_length-1] = prices[rod_length-1];
 		
 		for(int first_cut_piece_length=1; first_cut_piece_length < rod_length; first_cut_piece_length++){
-			int this_revenue = prices[first_cut_piece_length-1] + opt_revenue[rod_length - first_cut_piece_length];
+			int this_revenue = prices[first_cut_piece_length-1] + opt_revenue[rod_length - first_cut_piece_length-1];
 			if (this_revenue > opt_revenue[rod_length-1])
 				opt_revenue[rod_length-1] = this_revenue;
 		}

@@ -33,6 +33,42 @@ void max_revenue_test_cases(){
 	n = 1;
 	expected_revenue = 1;
 	max_revenue_test_case(n, p, expected_revenue, ++caseNum);
+
+	n = 2;
+	expected_revenue = 5;
+	max_revenue_test_case(n, p, expected_revenue, ++caseNum);
+
+	n = 3;
+	expected_revenue = 8;
+	max_revenue_test_case(n, p, expected_revenue, ++caseNum);
+
+	n = 4;
+	expected_revenue = 10;
+	max_revenue_test_case(n, p, expected_revenue, ++caseNum);
+
+	n = 5;
+	expected_revenue = 13;
+	max_revenue_test_case(n, p, expected_revenue, ++caseNum);
+
+	n = 6;
+	expected_revenue = 17;
+	max_revenue_test_case(n, p, expected_revenue, ++caseNum);
+
+	n = 7;
+	expected_revenue = 18;
+	max_revenue_test_case(n, p, expected_revenue, ++caseNum);
+
+	n = 8;
+	expected_revenue = 22;
+	max_revenue_test_case(n, p, expected_revenue, ++caseNum);
+
+	n = 9;
+	expected_revenue = 25;
+	max_revenue_test_case(n, p, expected_revenue, ++caseNum);
+
+	n = 10;
+	expected_revenue = 30;
+	max_revenue_test_case(n, p, expected_revenue, ++caseNum);
 }
 
 int main(){
